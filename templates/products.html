@@ -1,0 +1,71 @@
+   {% extends "base.html" %}
+
+   {% block title %}
+        <title>All products</title>
+    {% endblock %}
+
+   {% block content %}
+
+   <section class="section">
+       <div class="row align-items-top">
+            {% for product in products %}
+                {% empty %}
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">No products!</h4>
+                        <hr>
+                        <p class="mb-0">Please check back later.</p>
+                    </div>
+                {% endfor %}
+            `<div class="row">
+                {% for product in products %}
+
+                {% if product.product_stock == 0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Out of stock!</h4>
+                        <p>Sorry, we are out of stock for {{ product.product_name }}.</p>
+                        <hr>
+                        <p class="mb-0">Please check back later.</p>
+                    </div>
+                {% else %}
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text">{{ product.description }}</p>
+                                {% if product.stock > 50 %}
+                                    <button type="button" class="btn btn-primary position-relative">
+                                        Stock
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{ product.stock }}
+                                        </span>
+                                    </button>
+                                {% elif product.stock > 20 %}
+                                    <button type="button" class="btn btn-primary position-relative">
+                                        Stock
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                            {{ product.stock }}
+                                        </span>
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="btn btn-danger position-relative">
+                                        Stock
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                            {{ product.stock }}
+                                        </span>
+                                    </button>
+                                {% endif %}
+                                <p class="card-text">Ksh. {{ product.price }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                {% endfor %}
+        </div>`
+        </div>
+    </section>
+
+{% endblock %}

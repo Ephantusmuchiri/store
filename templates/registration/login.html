@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Login</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Login to My Food Store</h1>
+
+<!-- Login Form -->
+<form method="post" id="loginForm">
+    {% csrf_token %}
+
+    <h2>Login</h2>
+    <label for="loginUsername">Username:</label>
+    {{ form.username }}
+
+    <label for="loginPassword">Password:</label>
+    {{ form.password }}
+
+    <button type="submit" class="btn btn-primary">Login</button>
+  
+    <p class="small mb-0">Don't have account? <a href="{% url 'signup' %}">Click Here</a></p>
+
+  </form>
+
+{% endblock %}

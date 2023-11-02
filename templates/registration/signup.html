@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Sign up</title>
+{% endblock %}
+
+{% block content %}
+
+        <!-- Sign up Form -->
+        <form method="post" id="loginForm">
+            {% csrf_token %}
+            <h2>Sign up</h2>
+            <label for="signupUsername">Username:</label>
+            <input type="text" id="signupUsername" required>
+
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" required>
+
+            <button type="button" class="btn btn-primary">Signup</button>
+            <p class="small mb-0">Already have an account? <a href="{% url 'login' %}">Click Here</a></p>
+        </form>
+
+{% endblock %}
